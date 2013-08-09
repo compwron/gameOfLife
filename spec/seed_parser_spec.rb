@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 describe SeedParser do
-  describe "#" do
+  describe "#cells" do
     it "makes array with one live cell from file with one live square" do
       cell = Cell.new(0, 0, State.live)
       SeedParser.new('spec/fixtures/oneLiveCell.txt').cells.should == [cell]

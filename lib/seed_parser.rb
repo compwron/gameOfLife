@@ -1,5 +1,7 @@
 require_relative "../lib/state"
 class SeedParser
+  attr_reader :cells
+
   def initialize(seed_file)
     @cells = cells_from(lines_in(seed_file))
   end
@@ -13,15 +15,12 @@ class SeedParser
   end
 
   def cells_from(lines)
-    current = []
+    cells = []
     lines.each_with_index{|line, y_index|
       line.strip.split('').each_with_index{|state, x_index|
-
+         cells << Cell.new(x_index, y_index, state.to_i)
       }
     }
-  end
-
-  def cells
-    [Cell.new(0, 0, State.live)]
+    cells
   end
 end
