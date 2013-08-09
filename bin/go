@@ -10,12 +10,13 @@ require 'trollop'
 
 opts = Trollop::options do
   opt :evolutions, "Number of evolutions to perform", :default => 10
-  opt :seedFile, "Location of input seed file, example: ../../config/config.yml", :default => "#{__FILE__}/../../input/beacon.txt"
-  opt :seedRandom, "Should seed randomly?", :default => false
+  opt :file, "Location of input seed file, example: ../../config/config.yml", :default => "#{__FILE__}/../../input/beacon.txt"
+  opt :random, "Should seed randomly?", :default => false
+  opt :size, "Side size of randomly generated seed", :default => 3
 end
 
 def run_command opts
-  seed = SeedParser.new(opts[:seedFile])
+  seed = SeedParser.new(opts[:file])
   seedGrid = Grid.new(seed.cells)
   Display.new(Game.new(seedGrid, opts[:evolutions])).display
 end
