@@ -9,8 +9,7 @@ class Display
 
   def display
     @game.grids.each { |grid|
-      puts grid
-      `clear`
+
     }
   end
 end

@@ -64,4 +64,8 @@ class Cell
   def == other
     position_equals(other.x, other.y) && @state == other.state
   end
+
+  def to_s
+    "Cell[x:#{@x} y:#{@y} state:#{@state}]"
+  end
 end
