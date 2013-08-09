@@ -1,6 +1,6 @@
 class Display
-  def initialize(grid)
-
+  def initialize(game)
+    @game = game
   end
 
   def evolve(evolutions)
@@ -8,6 +8,9 @@ class Display
   end
 
   def display
-
+    @game.grids.each { |grid|
+      puts grid
+      `clear`
+    }
   end
 end
