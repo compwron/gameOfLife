@@ -1,22 +1,23 @@
 require_relative "spec_helper"
 
 describe Grid do
+  describe "#evolutionary change" do
+    it "Any live cell with fewer than two live neighbours dies, as if caused by under-population" do
+      cells = [Cell.new(0, 0, State.live)]
+      subject = Grid.new(cells)
+      deadCell = subject.get_cell(0, 0)
+      deadCell.state.should == State.dead
+    end
 
-  it "Any live cell with fewer than two live neighbours dies, as if caused by under-population" do
-    cells = [Cell.new(0, 0, State.live)]
-    subject = Grid.new(cells)
-    deadCell = subject.get_cell(0, 0)
-    deadCell.state.should == State.dead
+    it "Any live cell with two live neighbours lives on to the next generation." do
+      cells = [Cell.new(0, 0, State.live), Cell.new(0, 1, State.live), Cell.new(1, 0, State.live)]
+      subject = Grid.new(cells)
+      live_cell = subject.get_cell(0, 0)
+      live_cell.state.should == State.live
+    end
   end
 
-  it "Any live cell with two live neighbours lives on to the next generation." do
-    cells = [Cell.new(0, 0, State.live), Cell.new(0, 1, State.live), Cell.new(1, 0, State.live)]
-    subject = Grid.new(cells)
-    live_cell = subject.get_cell(0, 0)
-    live_cell.state.should == State.live
-  end
-
-  #define "#valid_neighbors" do
+  describe "#valid_neighbors" do
     it "should have valid neighbors for solo cell" do
       cell = Cell.new(0, 0, State.live)
       Grid.new([cell]).valid_neighbors(cell, [cell]).size.should == 0
@@ -32,6 +33,6 @@ describe Grid do
       neighbors.size.should == 3
       neighbors.should_not include cell0
     end
-  #end
+  end
 
 end
