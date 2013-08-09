@@ -20,6 +20,6 @@ class Grid
   end
 
   def getCell(x, y)
-    @cells.select { |cell| cell.positionEquals(x, y) }.first
+    @cells.select { |cell| cell.position_equals(x, y) }.first
   end
 end

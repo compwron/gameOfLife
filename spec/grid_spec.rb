@@ -12,8 +12,8 @@ describe Grid do
   it "Any live cell with two live neighbours lives on to the next generation." do
     cells = [Cell.new(0, 0, State.live), Cell.new(0, 1, State.live), Cell.new(1, 0, State.live)]
     subject = Grid.new(cells)
-    liveCell = subject.getCell(0, 0)
-    liveCell.state.should == State.live
+    live_cell = subject.getCell(0, 0)
+    live_cell.state.should == State.live
   end
 
   #define "#valid_neighbors" do

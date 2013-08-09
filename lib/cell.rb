@@ -11,7 +11,7 @@ class Cell
     0
   end
 
-  def positionEquals(x, y)
+  def position_equals(x, y)
     @x == x && @y == y
   end
 
