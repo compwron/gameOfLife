@@ -14,12 +14,14 @@ class Grid
 
 
   def valid_neighbors(cell, available_cells)
-    available_cells.select{|available_cell|
+    available_cells.select { |available_cell|
       available_cell.is_neighbor_of?(cell)
     }
   end
 
-  def getCell(x, y)
-    @cells.select { |cell| cell.position_equals(x, y) }.first
+  def get_cell(x, y)
+    @cells.select { |cell|
+      cell.position_equals(x, y)
+    }.first
   end
 end

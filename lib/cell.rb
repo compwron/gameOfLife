@@ -1,4 +1,6 @@
 class Cell
+  require_relative "../lib/state"
+
   attr_reader :x, :y
 
   def initialize(x, y, state)
@@ -8,15 +10,26 @@ class Cell
   end
 
   def state
-    0
+    @state
   end
 
   def position_equals(x, y)
     @x == x && @y == y
   end
 
+  def live_neighbors(neighbor_cells)
+    neighbor_cells.select { |neighbor_cell|
+      neighbor_cell.state == State.live
+    }
+  end
+
   def evolve(neighbor_cells)
-    return Cell.new(@x, @y, @state)
+    new_state = @state
+
+    if (live_neighbors(neighbor_cells).count == 2) then
+      new_state = State.dead
+    end
+    return Cell.new(@x, @y, new_state)
   end
 
   def is_neighbor_of?(cell)
