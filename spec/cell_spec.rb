@@ -22,5 +22,10 @@ describe Cell do
     cell.is_neighbor_of?(Cell.new(1, 1, State.live)).should be_true
   end
 
+  it "cell is valid neighbor of upwards left diagonal" do
+    cell = Cell.new(1, 1, State.live)
+    cell.is_neighbor_of?(Cell.new(0, 0, State.live)).should be_true
+  end
+
 end
 
