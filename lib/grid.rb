@@ -2,6 +2,7 @@ require_relative "../lib/state"
 require_relative "../lib/cell"
 
 class Grid
+  attr_reader :cells
   def initialize(cells)
     @cells = evolve(cells) # check that there are no duplicate cells? Or trust the parsing layer to do that?
   end
@@ -23,5 +24,9 @@ class Grid
     @cells.select { |cell|
       cell.position_equals(x, y)
     }.first
+  end
+
+  def == other
+    @cells == other.cells
   end
 end

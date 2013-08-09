@@ -10,5 +10,15 @@ describe Game do
     grids.first.should == grid
   end
 
+  it "Game with one iteration contains the passed-in grid and the evolution of the passed-in grid" do
+    seed_grid = Grid.new([Cell.new(0, 0, State.live)])
+    first_evolved_grid = Grid.new([Cell.new(0, 0, State.dead)])
+
+    grids = Game.new(seed_grid, 1).grids
+    grids.size.should == 2
+    grids.should include seed_grid
+    grids.should include first_evolved_grid
+  end
+
 
 end
