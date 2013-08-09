@@ -26,7 +26,7 @@ class Cell
   def evolve(neighbor_cells)
     new_state = @state
 
-    if (live_neighbors(neighbor_cells).count == 2) then
+    if (live_neighbors(neighbor_cells).count < 2) then
       new_state = State.dead
     end
     return Cell.new(@x, @y, new_state)
