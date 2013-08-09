@@ -7,16 +7,15 @@ class Grid
   end
 
   def evolve(cells)
-    #cells.map { |cell|
-    #  cell.evolve(valid_neighbors(cell))
-    #}
-    cells
+    cells.map { |cell|
+      cell.evolve(valid_neighbors(cell, cells))
+    }
   end
 
 
-  def valid_neighbors(cell)
-    @cells.select{|possible_cells|
-      possible_cells.is_neighbor_of?(cell)
+  def valid_neighbors(cell, available_cells)
+    available_cells.select{|available_cell|
+      available_cell.is_neighbor_of?(cell)
     }
   end
 
