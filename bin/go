@@ -4,7 +4,7 @@ require_relative "../lib/display"
 require_relative "../lib/grid"
 require_relative "../lib/seed_parser"
 
-unless ARGV.size == 1
+unless ARGV.size == 2
   puts "Usage: ./bin/go numberOfEvolutions pathToSeedFile "
   exit
 end
@@ -12,4 +12,4 @@ end
 evolutions = ARGV[0]
 seed_file = ARGV[1]
 seed = SeedParser.new(seed_file)
-Display.new(Grid.new(seed).evolve(evolutions)).display
+Display.new(Grid.new(seed.cells).evolve(evolutions)).display

@@ -60,4 +60,8 @@ class Cell
     }
     false
   end
+
+  def == other
+    position_equals(other.x, other.y) && @state == other.state
+  end
 end
