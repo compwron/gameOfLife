@@ -15,6 +15,50 @@ describe Grid do
       live_cell = subject.get_cell(0, 0)
       live_cell.state.should == State.live
     end
+
+    it "Any live cell with three live neighbours lives on to the next generation" do
+      cell0 = Cell.new(0, 0, State.live)
+      cell1 = Cell.new(0, 1, State.live)
+      cell2 = Cell.new(1, 0, State.live)
+      cell3 = Cell.new(1, 0, State.live)
+      all_cells = [cell0, cell1, cell2, cell3]
+
+      subject = Grid.new(all_cells)
+      subject.get_cell(0, 0).state.should == State.live
+    end
+
+    it "Any dead cell with less than 3 live neighbours stays dead" do
+      cell0 = Cell.new(0, 0, State.dead)
+      cell1 = Cell.new(0, 1, State.live)
+      cell2 = Cell.new(1, 0, State.live)
+      all_cells = [cell0, cell1, cell2]
+
+      subject = Grid.new(all_cells)
+      subject.get_cell(0, 0).state.should == State.dead
+    end
+
+    it "Any dead cell with three live neighbours becomes alive" do
+      cell0 = Cell.new(0, 0, State.dead)
+      cell1 = Cell.new(0, 1, State.live)
+      cell2 = Cell.new(1, 0, State.live)
+      cell3 = Cell.new(1, 0, State.live)
+      all_cells = [cell0, cell1, cell2, cell3]
+
+      subject = Grid.new(all_cells)
+      subject.get_cell(0, 0).state.should == State.live
+    end
+
+    it "Any live cell with more than three live neighbours dies" do
+      cell0 = Cell.new(1, 1, State.live)
+      cell1 = Cell.new(0, 0, State.live)
+      cell2 = Cell.new(0, 1, State.live)
+      cell3 = Cell.new(1, 0, State.live)
+      cell4 = Cell.new(2, 2, State.live)
+      all_cells = [cell0, cell1, cell2, cell3, cell4]
+
+      subject = Grid.new(all_cells)
+      subject.get_cell(1, 1).state.should == State.dead
+    end
   end
 
   describe "#valid_neighbors" do

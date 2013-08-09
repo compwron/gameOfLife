@@ -26,10 +26,31 @@ class Cell
   def evolve(neighbor_cells)
     new_state = @state
 
-    if (live_neighbors(neighbor_cells).count < 2) then
+    if has_fewer_than_two_surrounding_live_cells?(neighbor_cells) then
       new_state = State.dead
     end
+
+    if has_three_live_neighbors?(neighbor_cells) then
+      new_state = State.live
+    end
+
+    if has_more_than_three_live_neighbors?(neighbor_cells) then
+      new_state = State.dead
+    end
+
     return Cell.new(@x, @y, new_state)
+  end
+
+  def has_more_than_three_live_neighbors?(neighbor_cells)
+    live_neighbors(neighbor_cells).count > 3
+  end
+
+  def has_three_live_neighbors?(neighbor_cells)
+    live_neighbors(neighbor_cells).count == 3
+  end
+
+  def has_fewer_than_two_surrounding_live_cells?(neighbor_cells)
+    live_neighbors(neighbor_cells).count < 2
   end
 
   def is_neighbor_of?(cell)
