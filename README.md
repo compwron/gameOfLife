@@ -1,10 +1,10 @@
-Implement [https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life]
+Implement [Conway's Game of Life] (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 Rules:
-Any live cell with fewer than two live neighbours dies, as if caused by under-population.
-Any live cell with two or three live neighbours lives on to the next generation.
-Any live cell with more than three live neighbours dies, as if by overcrowding.
-Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+* Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+* Any live cell with two or three live neighbours lives on to the next generation.
+* Any live cell with more than three live neighbours dies, as if by overcrowding.
+* Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 TODO (not in priority order):
 * move more logic out of bin/go
@@ -15,11 +15,11 @@ TODO (not in priority order):
 * Implement hexagonal Game of Life     (rules at http://www.well.com/~dgb/hexrules.html and below)
 * Implement display in openGL or something other than terminal
 
--|--|--| 2|--|--|-
---| 2| 1| 1| 2|--|
--|--| 1| *| 1|--|-
---| 2| 1| 1| 2|--|
--|--|--| 2|--|--|-
+* -|--|--| 2|--|--|-
+* --| 2| 1| 1| 2|--|
+* -|--| 1| *| 1|--|-
+* --| 2| 1| 1| 2|--|
+* -|--|--| 2|--|--|-
 
 The rules that govern the behavior of each cell or space in HexLife take into account the cell/space's 12 nearest neighbors.
 In the illustration above, the nearest neighbors of the space marked by "*"  are the numbered spaces.
@@ -29,16 +29,14 @@ Each generation the number of live neighbors of each space are added up. However
 A cell is born into an empty space if this sum falls within the range of 2.3 - 2.9. Otherwise the space remains empty.
 A live cell survives to the next generation if this sum falls within the range of 2.0 - 3.3. Otherwise it dies (becomes an empty space).
 
-* means occupied
-so A is not occupied
-C is occupied
+* * means occupied, so A is not occupied, but C is occupied
 
---|--|--|--|--|--|
--|--|--|--|--|--|-
---| A| *|*C|--|--|
--|--|*B| *|--|--|-
---| *|--|*D|--|--|
--|--|--|--|--|--|-
+* --|--|--|--|--|--|
+* -|--|--|--|--|--|-
+* --| A| *|*C|--|--|
+* -|--|*B| *|--|--|-
+* --| *|--|*D|--|--|
+* -|--|--|--|--|--|-
 
 This illustration shows a simple pattern of live cells (green circles).
 The sum of live neighbors for space "A" is 2.6 (2 1st tier neighbors x 1.0 plus 2 2nd tier neighbors x 0.3 = 2.0 + 0.6 = 2.6).
