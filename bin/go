@@ -4,6 +4,7 @@ require_relative "../lib/display"
 require_relative "../lib/grid"
 require_relative "../lib/seed_parser"
 require_relative "../lib/game"
+require_relative "../lib/random_seed"
 
 
 require 'trollop'
@@ -12,11 +13,16 @@ opts = Trollop::options do
   opt :evolutions, "Number of evolutions to perform", :default => 10
   opt :file, "Location of input seed file, example: ../../config/config.yml", :default => "#{__FILE__}/../../input/beacon.txt"
   opt :random, "Should seed randomly?", :default => false
-  opt :size, "Side size of randomly generated seed", :default => 3
+  opt :sizeMax, "Max side size of randomly generated seed", :default => 5
 end
 
 def run_command opts
-  seed = SeedParser.new(opts[:file])
+  if (opts[:random])
+    seed = RandomSeed.new(opts[:sizeMax])
+  else
+    seed = SeedParser.new(opts[:file])
+  end
+
   seedGrid = Grid.new(seed.cells)
   Display.new(Game.new(seedGrid, opts[:evolutions])).display
 end

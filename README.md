@@ -25,3 +25,5 @@ http://bjorkoy.com/2010/05/conways-game-of-life-in-ruby/
 
 def play! (1..@steps).each do next! system('clear') puts self end end
 
+
+hexagonal rules: http://www.well.com/~dgb/hexrules.html

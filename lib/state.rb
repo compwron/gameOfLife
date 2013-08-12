@@ -6,4 +6,8 @@ class State
   def self.dead
     0
   end
+
+  def self.random
+    rand(1)
+  end
 end
