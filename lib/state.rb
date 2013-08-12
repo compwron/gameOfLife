@@ -8,6 +8,9 @@ class State
   end
 
   def self.random
-    rand(1)
+    random = rand(2)
+    random_change = rand(2)
+
+    (random == 1 || random_change == 1) ? 1 : 0
   end
 end

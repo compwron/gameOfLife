@@ -4,9 +4,9 @@ class Display
   end
 
   def display
-    @game.grids.each { |grid|
+    @game.grids.each_with_index { |grid, index|
       clear_screen
-      puts grid
+      puts "#{grid}\n\nIteration:#{index}"
       sleep 0.5
     }
   end
